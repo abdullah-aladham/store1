@@ -118,7 +118,7 @@ namespace store1.Controllers
                     };
                     _context.Customer_Products.Update(customer);
                     _context.SaveChanges();
-                    TempData["sucessMessage"] = "customer Prdouct details Updated Successully!";
+                    TempData["sucessMessage"] = "customerPrdouct details Updated Successully!";
                     return RedirectToAction("Index");
                 }
                 else
@@ -141,9 +141,9 @@ namespace store1.Controllers
         [HttpGet]
         public IActionResult ShowPriceByCustomerType(string type)
         {
-            if(type!=null)
-            var customers = _context.Customer_Products.FromSqlRaw($"SELECT ProductId FROM customer_products WHERE(SELECT  Id , name FROM CUSTOMERS WHERE type={type};");
             
+            var customers = _context.Customer_Products.FromSqlRaw($"SELECT ProductId FROM customer_products WHERE(SELECT  Id , name FROM CUSTOMERS WHERE type={type};").ToList();
+       return View(customers);
         }
         [HttpGet]
         public IActionResult Delete(int Id) 

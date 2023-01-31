@@ -16,7 +16,7 @@
     }
     <form>
         <button asp-action="Create" asp-controller="CustomerProduct" class="btn btn-primary">Add Customer</button>
-        <button asp-action="Show" asp-controller="CustomerProduct" class="btn btn-primary">Add Customer</button>
+        <button asp-action="Show" asp-controller="CustomerProduct" class="btn btn-primary">Show price by customer id</button>
     </form>
     <table class="table table-responsive table-hover">
         <thead>
@@ -38,7 +38,7 @@
                         <td>
                             <form>
                                 <div class="btn-group btn-group-sm">
-                                    <button asp-action="Update" asp-controller="CustomerProduct" asp-route-id="@customerP.Id" class="btn btn-primary">Edit</button>
+                                    <button asp-action="Edit" asp-controller="CustomerProduct" asp-route-id="@customerP.Id" class="btn btn-primary">Edit</button>
 
 
                                 </div>
