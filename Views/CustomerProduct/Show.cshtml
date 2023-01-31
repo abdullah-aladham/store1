@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show</title>
+</head>
+<body>
+    <form asp-action="ShowPriceByCustomerType" method="get">
+    <select name="type">
+        <option value="Top">Top</option>
+        <option value="Regular">Regular Customer</option>
+    </select>
+    </form>
+
+    <h2>Prices by id of customer</h2>
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>CustomerId</th>
+                <th>ProductId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var customerP in Model)
+                {
+                    <tr>
+                        <td>@customerP.Id</td>
+                        <td>@customerP.CustomerId</td>
+                        <td>@customerP.ProductId</td>
+                       
+                    </tr>
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">
+                        <div><p>No Customers Avaliable at the moment</p></div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+
+</html>

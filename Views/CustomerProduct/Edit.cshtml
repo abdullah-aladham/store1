@@ -1,4 +1,4 @@
-﻿@model store1.Models.MViews.ProductViewModel
+﻿@model store1.Models.MViews.CustomerProductViewModel
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Edit Admin";
@@ -22,7 +22,7 @@
 }
 
 
-<form asp-action="UpdateProduct" method="post">
+<form asp-action="EditCustomerProduct" method="post">
 
     <div class="mb-3">
         <label class="form-label">Id</label>
@@ -30,25 +30,18 @@
 
     </div>
     <div class="mb-3">
-        <label class="form-label">Name</label>
-        <input type="text" class="form-control" asp-for="Name" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+        <label class="form-label">CustomerId</label>
+        <input type="text" class="form-control" asp-for="CustomerId" />
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
 
     </div>
-    
     <div class="mb-3">
-        <label class="form-label">Description</label>
-        <input type="text" class="form-control" asp-for="Description" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div><div class="mb-3">
-        <label class="form-label">wholesalePrice</label>
-        <input type="text" class="form-control" asp-for="wholesalePrice" />
-        <span asp-validation-for="wholesalePrice" class="text-danger"></span>
-    </div><div class="mb-3">
-        <label class="form-label">price</label>
-        <input type="text" class="form-control" asp-for="price" />
-        <span asp-validation-for="price" class="text-danger"></span>
+        <label class="form-label">ProductId</label>
+        <input type="text" class="form-control" asp-for="ProductId" />
+        <span asp-validation-for="ProductId" class="text-danger"></span>
+
     </div>
+
     <div class="d-grid">
         <button type="submit" class="btn btn-success">Update</button>
     </div>

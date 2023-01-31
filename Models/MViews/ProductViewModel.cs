@@ -10,6 +10,5 @@ namespace store1.Models.MViews
         public string Description { get; set; }
         public double wholesalePrice { get; set; }
         public double price { get; set; }
-        public ICollection<Customer> Customers { get; set; }
     }
 }

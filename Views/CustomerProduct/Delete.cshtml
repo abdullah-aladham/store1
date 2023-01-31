@@ -1,4 +1,4 @@
-﻿@model store1.Models.MViews.CustomerViewModel
+﻿@model store1.Models.MViews.CustomerProductViewModel
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Delete Admin";
@@ -25,7 +25,7 @@
     }
 
 
-    <form asp-action="DeleteCustomer" method="post">
+    <form asp-action="DeleteCustomerProduct" method="post">
 
         <div class="mb-3">
             <label class="form-label">
@@ -33,23 +33,23 @@
             </label>
             <input type="text" class="form-control" asp-for="Id" readonly />
         </div>
+        
         <div class="mb-3">
             <label class="form-label">
-                Name
+                CustomerId
             </label>
-            <input type="text" class="form-control" asp-for="Name" readonly />
+            <input type="text" class="form-control" asp-for="CustomerId" readonly />
 
-        </div>
-        <div class="mb-3" >
-            <label class="form-label">Customer Type</label>
-            <select name="type" asp-for="type" disabled>
-                <option value="Top">Top Customer</option>
-                <option value="Regular">Regular</option>
-            </select>
+        </div> 
+        <div class="mb-3">
+            <label class="form-label">
+               ProductId
+            </label>
+            <input type="text" class="form-control" asp-for="ProductId" readonly />
 
         </div>
         <div>
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete admin:@Model.Name')">Delete</button>
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete admin:@Model.Id')">Delete</button>
         </div>
     </form>
 </body>

@@ -8,6 +8,6 @@ namespace store1.Models
         public int Id { get; set; }
         public string Name { get; set; }
       public string type { get; set; }
-        public  List<Products> Products { get; set; }
+        public  List<CustomerProducts> Customer_Products { get; set; }
     }
 }

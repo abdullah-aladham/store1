@@ -97,13 +97,13 @@ namespace store1.Controllers
                 else
                 {
                     TempData["errorMessage"] = "Model data is invalid";
-                    return View();
+                    return RedirectToAction("Index"); ;
                 }
             }
             catch (Exception e)
             {
                 TempData["errorMessage"] = e.Message;
-                return View();
+                return RedirectToAction("Index"); ;
             }
             //return View();
 
@@ -164,7 +164,7 @@ namespace store1.Controllers
                 return RedirectToAction("Index");
             }
         }
-        [HttpPost]
+        [HttpDelete]
         public IActionResult DeleteCustomer(CustomerViewModel model)
         {
             try

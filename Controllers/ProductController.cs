@@ -26,7 +26,7 @@ namespace store1.Controllers
                         Id = product.Id,
                         Name = product.Name,
                         Description = product.Description,
-                        Customers = product.Customers
+
                     };
                     productList.Add(ProductViewModel);
                 }
@@ -47,7 +47,6 @@ namespace store1.Controllers
                         Id = ProductData.Id,
                         Name = ProductData.Name,
                         Description = ProductData.Description,
-                        Customers = (List<Customer>)ProductData.Customers
                     };
                     _context.Products.Add(product);
                     _context.SaveChanges();
@@ -57,7 +56,7 @@ namespace store1.Controllers
                 else
                 {
                     TempData["errorMessage"] = "Model data is not valid";
-                    return View();
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception e)
@@ -86,7 +85,6 @@ namespace store1.Controllers
                         Name = model.Name,
                         price = model.price,
                         wholesalePrice= model.wholesalePrice,
-                        Customers = (List<Customer>)model.Customers
                     };
                     _context.Products.Update(product);
                     _context.SaveChanges();
@@ -96,13 +94,13 @@ namespace store1.Controllers
                 else
                 {
                     TempData["errorMessage"] = "Product data is invalid";
-                    return View();
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception e)
             {
                 TempData["errorMessage"] = e.Message;
-                return View();
+                return RedirectToAction("Index");
             }
             //return View();
 
@@ -121,7 +119,6 @@ namespace store1.Controllers
                         Description= product.Description,
                         wholesalePrice= product.wholesalePrice,
                         price= product.price,
-                        Customers= product.Customers
                     };
                     return View(ProductView);
                 }
@@ -151,7 +148,6 @@ namespace store1.Controllers
                         Description = product.Description,
                         wholesalePrice = product.wholesalePrice,
                         price= product.price,
-                        Customers= product.Customers
 
                     };
                     return View(productView);
@@ -170,7 +166,7 @@ namespace store1.Controllers
             }
         }
         [HttpPost]
-        public IActionResult DeleteCustomer(CustomerViewModel model)
+        public IActionResult DeleteProduct(ProductViewModel model)
         {
             try
             {
