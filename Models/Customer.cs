@@ -7,7 +7,7 @@ namespace store1.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-      public CustomerType type { get; set; }
+      public string type { get; set; }
         public  List<Products> Products { get; set; }
     }
 }

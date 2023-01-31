@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using store1.Data;
+using store1.Models.MViews;
 using store1.Models;
-using store1.Models.Fetches;
 
 namespace store1.Controllers
 {
@@ -11,7 +11,7 @@ namespace store1.Controllers
         private readonly ApplicationDbContext _context;
         public CustomerController(ApplicationDbContext context)
         {
-            this._context= context;
+            this._context = context;
         }
         public IActionResult Index()
         {
@@ -20,20 +20,23 @@ namespace store1.Controllers
 
             if (customers != null)
             {
-                foreach (var customer in customers)
-                {
-                    var CustomerViewModel = new CustomerViewModel()
+               
+                    foreach (var customer in customers)
                     {
-                        Id = customer.Id,
-                        Name = customer.Name,
-                        type = customer.type,
-                        Products = customer.Products
-                    };
-                    customerList.Add(CustomerViewModel);
+                        var CustomerViewModel = new CustomerViewModel()
+                        {
+                            Id = customer.Id,
+                            Name = customer.Name,
+                            type = customer.type,
+                        };
+                        customerList.Add(CustomerViewModel);
+                    }
+                    return View(customerList);
                 }
-                return View(customerList);
-            }
             return View(customerList);
+
+
+            
         }
         [HttpPost]
         public IActionResult AddCustomer(CustomerViewModel customerData)
@@ -48,7 +51,6 @@ namespace store1.Controllers
                         Id = customerData.Id,
                         Name = customerData.Name,
                         type = customerData.type,
-                        Products = customerData.Products
                     };
                     _context.Customers.Add(customer);
                     _context.SaveChanges();
@@ -58,7 +60,7 @@ namespace store1.Controllers
                 else
                 {
                     TempData["errorMessage"] = "Model data is not valid";
-                    return View();
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception e)
@@ -86,7 +88,6 @@ namespace store1.Controllers
                         Id = model.Id,
                         Name = model.Name,
                         type = model.type,
-                        Products = model.Products
                     };
                     _context.Customers.Update(customer);
                     _context.SaveChanges();
@@ -117,7 +118,9 @@ namespace store1.Controllers
                     var CustomerView = new CustomerViewModel()
                     {
                         Id = customer.Id,
-                        Name = customer.Name
+                        Name = customer.Name,
+                        type=customer.type,
+
                     };
                     return View(CustomerView);
                 }
@@ -145,7 +148,6 @@ namespace store1.Controllers
                         Id = customer.Id,
                         Name = customer.Name,
                         type=customer.type,
-                        Products=customer.Products
                     };
                     return View(customerView);
                 }

@@ -1,4 +1,4 @@
-﻿@model store1.Models.CustomerViewModel
+﻿@model store1.Models.MViews.ProductViewModel
 @{
     Layout = "_Layout";
 }
@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <form action="AddAdmin" method="post">
+    <form action="AddProduct" method="post">
         <div class="mb-3">
             <label class="form-label">Id</label>
             <input type="text" class="form-control" asp-for="Id" />
@@ -30,6 +30,18 @@
             <label class="form-label">Name</label>
             <input type="text" class="form-control" asp-for="Name" />
             <span asp-validation-for="Name" class="text-danger"></span>
+        </div><div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" asp-for="Description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div><div class="mb-3">
+            <label class="form-label">wholesalePrice</label>
+            <input type="text" class="form-control" asp-for="wholesalePrice" />
+            <span asp-validation-for="wholesalePrice" class="text-danger"></span>
+        </div><div class="mb-3">
+            <label class="form-label">price</label>
+            <input type="text" class="form-control" asp-for="price" />
+            <span asp-validation-for="price" class="text-danger"></span>
         </div>
         <div class="d-grid">
             <button type="submit" class="btn btn-primary">Submit</button>

@@ -1,4 +1,4 @@
-﻿@model store1.Models.CustomerViewModel
+﻿@model store1.Models.MViews.CustomerViewModel
 @{
     Layout = "_Layout";
 }
@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>AddAdmin</title>
+    <title>Add Customer</title>
     <style>
         input {
             padding: 5px;
@@ -17,10 +17,13 @@
         div {
             margin: 5px;
         }
+        input[radio]{
+            padding :5px;
+        }
     </style>
 </head>
 <body>
-    <form action="AddAdmin" method="post">
+    <form action="AddCustomer" method="post">
         <div class="mb-3">
             <label class="form-label">Id</label>
             <input type="text" class="form-control" asp-for="Id" />
@@ -30,6 +33,14 @@
             <label class="form-label">Name</label>
             <input type="text" class="form-control" asp-for="Name" />
             <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Customer Type</label>
+            <select name="type">
+                <option value="Top">Top Customer</option>
+                <option value="Regular">Regular Customer</option>
+            </select>
+
         </div>
         <div class="d-grid">
             <button type="submit" class="btn btn-primary">Submit</button>

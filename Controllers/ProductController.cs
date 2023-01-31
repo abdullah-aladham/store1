@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using store1.Data;
-using store1.Models.Fetches;
+using store1.Models.MViews;
 using store1.Models;
 
 namespace store1.Controllers

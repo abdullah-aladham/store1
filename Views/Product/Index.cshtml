@@ -1,40 +1,49 @@
-﻿@model List<store1.Models.MViews.CustomerViewModel>
+﻿@model List<store1.Models.MViews.ProductViewModel>
 
 @{
-    ViewData["Title"] = "CustomerIndex";
+    ViewData["Title"] = "ProductIndex";
 
 }
 @Model List<CustomerModel>
 
-    <h1>Admins</h1>
+    <h1>@ViewData["Title"]</h1>
 
     <form>
-        <button asp-action="Create" asp-controller="Customer" class="btn btn-primary">Add Customer</button>
+        <button asp-action="Create" asp-controller="Product" class="btn btn-primary">Add Product</button>
     </form>
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
                 <th>id</th>
                 <th>Name</th>
+                <th>Description</th>
+                <th>Wholesale price</th>
+                <th> price</th>
+                <th> customers</th>
+
             </tr>
         </thead>
         <tbody>
             @if (Model != null && Model.Any())
             {
-                foreach (var admin in Model)
+                foreach (var product in Model)
                 {
                     <tr>
-                        <td>@admin.Id</td>
-                        <td>@admin.Name</td>
+                        <td>@product.Id</td>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td>@product.wholesalePrice</td>
+                        <td>@product.price</td>
+                        <td>@product.Customers</td>
                         <td>
                             <form>
                                 <div class="btn-group btn-group-sm">
-                                    <button asp-action="Edit" asp-controller="Admin" asp-route-id="@admin.Id" class="btn btn-primary">Edit</button>
+                                    <button asp-action="Update" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-primary">Edit</button>
 
 
                                 </div>
                                 <div class="btn-group btn-group-sm">
-                                    <button asp-action="Delete" asp-controller="Admin" asp-route-id="@admin.Id" class="btn btn-danger">Delete</button>
+                                    <button asp-action="Delete" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-danger">Delete</button>
                                 </div>
                             </form>
                         </td>
@@ -46,7 +55,7 @@
             {
                 <tr>
                     <td colspan="2">
-                        <div><p>No Admins Avaliable at the moment</p></div>
+                        <div><p>No Products Avaliable at the moment</p></div>
                     </td>
                 </tr>
             }
