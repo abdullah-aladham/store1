@@ -152,7 +152,7 @@ namespace store1.Controllers
                     };
                     return View(productView);
                 }
-                else
+                 
                 {
                     TempData["errorMessage"] = "Product details are not avaliable with Id:{Id}";
                     return RedirectToAction("Index");

@@ -1,9 +1,10 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@model List<store1.Models.MViews.CustomerViewModel>
 
-<!DOCTYPE html>
+@{
+    Layout = "_Layout";
+}
+@Model List<CustomerViewModel>
+    <!DOCTYPE html>
 
 <html>
 <head>
@@ -16,6 +17,7 @@
         <option value="Top">Top</option>
         <option value="Regular">Regular Customer</option>
     </select>
+    <button type="submit">Show</button>
     </form>
 
     <h2>Prices by id of customer</h2>
@@ -34,8 +36,8 @@
                 {
                     <tr>
                         <td>@customerP.Id</td>
-                        <td>@customerP.CustomerId</td>
-                        <td>@customerP.ProductId</td>
+                        <td>@customerP.Name</td>
+                        <td>@customerP.type</td>
                        
                     </tr>
 

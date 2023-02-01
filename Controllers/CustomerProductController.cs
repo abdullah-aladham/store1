@@ -138,13 +138,45 @@ namespace store1.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public IActionResult ShowPriceByCustomerType(string type)
-        {
-            
-            var customers = _context.Customer_Products.FromSqlRaw($"SELECT ProductId FROM customer_products WHERE(SELECT  Id , name FROM CUSTOMERS WHERE type={type};").ToList();
-       return View(customers);
-        }
+        //[HttpGet]
+        //public IActionResult ShowPriceByCustomerType(string type,double Wholisticprice)
+        //{
+
+        //    try
+        //    {
+        //        var customer = _context.Customers.SingleOrDefault(x => x.type == type);
+        //        var Prodprice = _context.Products.SingleOrDefault(x => x.price == Wholisticprice);
+        //        if (customer != null &&customer.type=="Top")
+        //        {
+        //            var wholisticprod = new ProductViewModel()
+        //            {
+        //                Name = Prodprice.Name,
+        //                wholesalePrice = Prodprice.wholesalePrice,
+        //            };
+        //            var TopCustomer = new CustomerViewModel()
+        //            {
+        //                Id = customer.Id,
+        //                Name = customer.Name,
+        //                type = customer.type,
+
+        //            };
+        //            return View(TopCustomer);
+        //        }
+        //        else if(customer != null && customer.type == "Regular") {
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            TempData["errorMessage"] = $"details are not avaliable with  : {type}";
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        TempData["error Message"] = e.Message;
+        //        return RedirectToAction("Index");
+        //    }
+        //}
         [HttpGet]
         public IActionResult Delete(int Id) 
         {
