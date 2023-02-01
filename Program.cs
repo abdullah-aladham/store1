@@ -1,5 +1,7 @@
-using Microsoft.EntityFrameworkCore;
 using store1.Data;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySQL(connectionString));
 var app = builder.Build();
 
-
+//builder.Configuration.GetConnectionString("Data Source=DESKTOP-2E84EKK;Initial Catalog =store;Integrated Security=True;Connect Timeout=30;" +
+//"Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite" +
+//";MultiSubnetFailover=False;"
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

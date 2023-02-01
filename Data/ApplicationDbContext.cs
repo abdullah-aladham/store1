@@ -17,7 +17,8 @@ namespace store1.Data
         public DbSet<CustomerProducts> Customer_Products { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseMySQL("server=localhost;database=store;username=root;password=HelloWorld-1516!");
+            // optionBuilder.UseSqlServer("Data Source=DESKTOP-2E84EKK;Initial Catalog =store;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;");
+            optionBuilder.UseMySQL("server=localhost;database=store;uid=root;password=HelloWorld-1516!;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

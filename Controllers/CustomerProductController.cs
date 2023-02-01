@@ -138,45 +138,29 @@ namespace store1.Controllers
         {
             return View();
         }
-        //[HttpGet]
-        //public IActionResult ShowPriceByCustomerType(string type,double Wholisticprice)
-        //{
+        [HttpGet]
+        public IActionResult ShowPriceByCustomerType(string type)
+        {//SELECT Customers.name,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id;
 
-        //    try
-        //    {
-        //        var customer = _context.Customers.SingleOrDefault(x => x.type == type);
-        //        var Prodprice = _context.Products.SingleOrDefault(x => x.price == Wholisticprice);
-        //        if (customer != null &&customer.type=="Top")
-        //        {
-        //            var wholisticprod = new ProductViewModel()
-        //            {
-        //                Name = Prodprice.Name,
-        //                wholesalePrice = Prodprice.wholesalePrice,
-        //            };
-        //            var TopCustomer = new CustomerViewModel()
-        //            {
-        //                Id = customer.Id,
-        //                Name = customer.Name,
-        //                type = customer.type,
+            try
+            {
+                if (type == "Top")
+                {
+                    var customer = _context.Customer_Products.FromSqlRaw($"SELECT Customers.name,Customers.type,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type=\"Top\";").ToList();
 
-        //            };
-        //            return View(TopCustomer);
-        //        }
-        //        else if(customer != null && customer.type == "Regular") {
-        //            return;
-        //        }
-        //        else
-        //        {
-        //            TempData["errorMessage"] = $"details are not avaliable with  : {type}";
-        //            return RedirectToAction("Index");
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        TempData["error Message"] = e.Message;
-        //        return RedirectToAction("Index");
-        //    }
-        //}
+                    
+                      
+                }
+                var customer = _context.Customer_Products.FromSqlRaw($"SELECT Customers.name,Customers.type,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type=\"Regular\";").ToList();
+
+            }
+            catch (Exception e)
+            {
+                TempData["error Message"] = e.Message;
+                return RedirectToAction("Index");
+            }
+        
+        }
         [HttpGet]
         public IActionResult Delete(int Id) 
         {
