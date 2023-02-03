@@ -40,10 +40,10 @@ namespace store1.Controllers
         }
         [HttpGet]
         public IActionResult Create() {
-        return View();
+            return View();
         }
         [HttpPost]
-         public IActionResult CreateCustomerProduct(CustomerProductViewModel customerP)
+        public IActionResult CreateCustomerProduct(CustomerProductViewModel customerP)
         {
             try
             {
@@ -103,8 +103,8 @@ namespace store1.Controllers
             }
 
         }
-        [HttpPost] 
-        public IActionResult EditCustomerProduct(CustomerProductViewModel model) 
+        [HttpPost]
+        public IActionResult EditCustomerProduct(CustomerProductViewModel model)
         {
             try
             {
@@ -139,27 +139,67 @@ namespace store1.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult ShowPriceByCustomerType(string type)
+        public IActionResult ShowPriceByCustomerType(string type, CustomerProductViewModel model)
         {//SELECT Customers.name,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id;
 
-            try
-            {
-                if (type == "Top")
-                {
-                    var customer = _context.Customer_Products.FromSqlRaw($"SELECT Customers.name,Customers.type,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type=\"Top\";").ToList();
+            /*SELECT Customers.name,Customers.type,Products.Name,Products.Price from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type="Regular";
+             
+             *THIS QUERY FOR REGULAR CUSTOMER*/
+            //  try
+            //{
+            //   return View();
 
-                    
-                      
-                }
-                var customer = _context.Customer_Products.FromSqlRaw($"SELECT Customers.name,Customers.type,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type=\"Regular\";").ToList();
+            //if (type == "Top")
+            //{
+            var query = _context.Customer_Products
+            .Join(
+            _context.Customers,
+            customerprod => customerprod.CustomerId,
+            customer => customer.Id
+            , (customerprod, customer) => new
+            {
+                CustomerId = customer.Id,
+                CustomerName = customer.Name,
+                CustomerType = customer.type,
+                productId=customerprod.Id
+                
 
             }
-            catch (Exception e)
-            {
-                TempData["error Message"] = e.Message;
-                return RedirectToAction("Index");
-            }
-        
+                )
+            .Join(_context.Products,
+            customerprod => customerprod.CustomerId,
+
+            product => product.Id,
+            (customerprod,product) => new { 
+            name=product.Name,
+            price=product.price,
+            wholesalePrice=product.wholesalePrice
+            });
+
+            //foreach(var item in query)
+            //{
+            //    Name = item.Customer.Name,
+            //    type=item.Customer.type,
+            //    name=item.Product.Name,
+
+            //}
+            //return RedirectToAction("Index");
+            //}
+            ////var customer = _context.Customer_Products.FromSqlRaw($"SELECT Customers.name,Customers.type,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type=\"Regular\";").ToList();
+            //else if (type == "Regular")
+            //{
+            //    var query = _context.Customer_Products.FromSqlRaw(regular).ToList();
+            //    return RedirectToAction("Index");
+            //}
+            //return View();
+            //}
+            //catch (Exception e)
+            //{
+            //   TempData["error Message"] = e.Message;
+            //  return RedirectToAction("Index");
+            //}
+
+            // }
         }
         [HttpGet]
         public IActionResult Delete(int Id) 
