@@ -1,9 +1,8 @@
-﻿@model List<store1.Models.MViews.CustomerViewModel>
+﻿@model store1.Models.MViews.ViewModel
 
 @{
     Layout = "_Layout";
 }
-@Model List<CustomerViewModel>
     <!DOCTYPE html>
 
 <html>
@@ -20,39 +19,7 @@
     <button type="submit">Show</button>
     </form>
 
-    <h2>Prices by id of customer</h2>
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>CustomerId</th>
-                <th>ProductId</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null && Model.Any())
-            {
-                foreach (var customerP in Model)
-                {
-                    <tr>
-                        <td>@customerP.Id</td>
-                        <td>@customerP.Name</td>
-                        <td>@customerP.type</td>
-                       
-                    </tr>
 
-                }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="4">
-                        <div><p>No Customers Avaliable at the moment</p></div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
 
 </body>
 

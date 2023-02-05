@@ -1,7 +1,8 @@
-﻿@model List<store1.Models.MViews.CustomerViewModel>
+﻿@model store1.Models.MViews.ViewModel
 
 @{
     Layout = "_Layout";
+    
 }
 
 
@@ -12,5 +13,46 @@
     <title>ShowPriceByCustomerType</title>
 </head>
 <body>
+    <h2>Prices by id of customer</h2>
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>ProductName</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                if(Model.Customers.Any() && Model.products.Any()){
+                @foreach (var customer in @Model.Customers)
+                {
+                    <td>@customer.Name</td>
+                    <td>@customer.type</td>
+                }
+                @foreach (var product in @Model.products)
+                {
+                    <td>@product.Name</td>
+                    <td>@product.price</td>
+                }
+                
+                }
+                
+            </tr>
+
+
+
+            else
+            {
+            <tr>
+                <td colspan="4">
+                    <div><p>No Customers Avaliable at the moment</p></div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </body>
 </html>

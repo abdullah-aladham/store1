@@ -149,49 +149,81 @@ namespace store1.Controllers
             //{
             //   return View();
 
-            //if (type == "Top")
-            //{
-            var query = _context.Customer_Products
-            .Join(
-            _context.Customers,
-            customerprod => customerprod.CustomerId,
-            customer => customer.Id
-            , (customerprod, customer) => new
+            if (type == "Top")
             {
-                CustomerId = customer.Id,
-                CustomerName = customer.Name,
-                CustomerType = customer.type,
-                productId=customerprod.Id
-                
+                var TopCustomerquery = _context.Customer_Products
+                .Join(
+                _context.Customers,
+                customerprod => customerprod.CustomerId,
+                customer => customer.Id
+                , (customerprod, customer) => new
+                {
+                    CustomerId = customer.Id,
+                    CustomerName = customer.Name,
+                    CustomerType = customer.type,
+                    productId = customerprod.ProductId
+
+
+                }
+                    )
+                .Join(_context.Products,
+                customerprod => customerprod.productId,
+
+                product => product.Id,
+                (customerprod, product) => new
+                {
+                    name = product.Name,
+                   wholesalePrice = product.wholesalePrice
+                });
+                return View(TopCustomerquery);
+            }
+            else if(type=="Regular")
+            {
+                var regularCustomerquery = _context.Customer_Products
+                .Join(
+                _context.Customers,
+                customerprod => customerprod.CustomerId,
+                customer => customer.Id
+                , (customerprod, customer) => new
+                {
+                    CustomerId = customer.Id,
+                    CustomerName = customer.Name,
+                    CustomerType = customer.type,
+                    productId = customerprod.ProductId
+
+
+                }
+                    )
+                .Join(_context.Products,
+                customerprod => customerprod.productId,
+
+                product => product.Id,
+                (customerprod, product) => new
+                {
+                    name = product.Name,
+
+                    Price = product.price
+                });
+                return View(regularCustomerquery);
 
             }
-                )
-            .Join(_context.Products,
-            customerprod => customerprod.CustomerId,
+            else { return View(); }
+            /*foreach(var item in query)
+            {
+                Name = item.Customer.Name,
+                type=item.Customer.type,
+                name=item.Product.Name,
 
-            product => product.Id,
-            (customerprod,product) => new { 
-            name=product.Name,
-            price=product.price,
-            wholesalePrice=product.wholesalePrice
-            });
-
-            //foreach(var item in query)
-            //{
-            //    Name = item.Customer.Name,
-            //    type=item.Customer.type,
-            //    name=item.Product.Name,
-
-            //}
-            //return RedirectToAction("Index");
-            //}
-            ////var customer = _context.Customer_Products.FromSqlRaw($"SELECT Customers.name,Customers.type,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type=\"Regular\";").ToList();
-            //else if (type == "Regular")
-            //{
-            //    var query = _context.Customer_Products.FromSqlRaw(regular).ToList();
-            //    return RedirectToAction("Index");
-            //}
-            //return View();
+            }
+            return RedirectToAction("Index");
+            }
+            //var customer = _context.Customer_Products.FromSqlRaw($"SELECT Customers.name,Customers.type,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type=\"Regular\";").ToList();
+            else if (type == "Regular")
+            {
+                var query = _context.Customer_Products.FromSqlRaw(regular).ToList();
+                return RedirectToAction("Index");
+            }*/
+          //  return View();
             //}
             //catch (Exception e)
             //{
