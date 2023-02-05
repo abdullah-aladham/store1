@@ -139,7 +139,7 @@ namespace store1.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult ShowPriceByCustomerType(string type, CustomerProductViewModel model)
+        public IActionResult ShowPriceByCustomerType(string type)
         {//SELECT Customers.name,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id;
 
             /*SELECT Customers.name,Customers.type,Products.Name,Products.Price from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type="Regular";
@@ -156,7 +156,7 @@ namespace store1.Controllers
                 _context.Customers,
                 customerprod => customerprod.CustomerId,
                 customer => customer.Id
-                , (customerprod, customer) => new
+                , (customerprod, customer) => new 
                 {
                     CustomerId = customer.Id,
                     CustomerName = customer.Name,
@@ -164,8 +164,8 @@ namespace store1.Controllers
                     productId = customerprod.ProductId
 
 
-                }
-                    )
+                })
+                .Where(customer => customer.CustomerType == "Top")
                 .Join(_context.Products,
                 customerprod => customerprod.productId,
 
@@ -173,11 +173,12 @@ namespace store1.Controllers
                 (customerprod, product) => new
                 {
                     name = product.Name,
-                   wholesalePrice = product.wholesalePrice
-                });
+                    wholesalePrice = product.wholesalePrice
+                }).ToList();
                 return View(TopCustomerquery);
             }
-            else if(type=="Regular")
+            
+            else 
             {
                 var regularCustomerquery = _context.Customer_Products
                 .Join(
@@ -194,6 +195,7 @@ namespace store1.Controllers
 
                 }
                     )
+                .Where(customer => customer.CustomerType == "Top")
                 .Join(_context.Products,
                 customerprod => customerprod.productId,
 
@@ -203,11 +205,11 @@ namespace store1.Controllers
                     name = product.Name,
 
                     Price = product.price
-                });
+                }).ToList();
                 return View(regularCustomerquery);
 
             }
-            else { return View(); }
+            //else { return View(); }
             /*foreach(var item in query)
             {
                 Name = item.Customer.Name,
