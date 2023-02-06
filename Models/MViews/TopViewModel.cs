@@ -1,11 +1,20 @@
-﻿namespace store1.Models.MViews
+﻿using System.ComponentModel;
+
+namespace store1.Models.MViews
 {
     public class TopViewModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string type { get; set; }
-        public double price { get; set; }
+       /* CustomerId =
+        CustomerName
+        CustomerType
+        productId = */
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerType { get; set; } = "Top";
+       
         public virtual Products product { get; set; }
+        public int productId { get; set; }
+        public string ProductName { get; set; }
+        public double wholesalePrice  { get; set; }
     }
 }

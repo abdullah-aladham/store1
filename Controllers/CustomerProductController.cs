@@ -139,102 +139,164 @@ namespace store1.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult ShowPriceByCustomerType(string type)
-        {//SELECT Customers.name,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id;
-
-            /*SELECT Customers.name,Customers.type,Products.Name,Products.Price from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type="Regular";
-             
-             *THIS QUERY FOR REGULAR CUSTOMER*/
-            //  try
-            //{
-            //   return View();
-
-            if (type == "Top")
-            {
-                var TopCustomerquery = _context.Customer_Products
-                .Join(
-                _context.Customers,
-                customerprod => customerprod.CustomerId,
-                customer => customer.Id
-                , (customerprod, customer) => new 
-                {
-                    CustomerId = customer.Id,
-                    CustomerName = customer.Name,
-                    CustomerType = customer.type,
-                    productId = customerprod.ProductId
+        public IActionResult ShowTopCustomer() {
+            var TopCustomerquery = _context.Customer_Products
+              .Join(
+              _context.Customers,
+              customerprod => customerprod.CustomerId,
+              customer => customer.Id
+              , (customerprod, customer) => new TopViewModel
+              {
+                  CustomerId = customer.Id,
+                  CustomerName = customer.Name,
+                  CustomerType = customer.type,
+                  productId = customerprod.ProductId
 
 
-                })
-                .Where(customer => customer.CustomerType == "Top")
+              })
+              .Where(customer => customer.CustomerType == "Top")
                 .Join(_context.Products,
                 customerprod => customerprod.productId,
-
                 product => product.Id,
-                (customerprod, product) => new
+                (customerprod, product) => new TopViewModel
                 {
-                    name = product.Name,
+                    ProductName = product.Name,
                     wholesalePrice = product.wholesalePrice
                 }).ToList();
-                return View(TopCustomerquery);
+            foreach (var customerProd in TopCustomerquery)
+            {
+                var model = new TopViewModel()//CPViewmodel=CustomerProductViewModel
+                {
+                    CustomerName = customerProd.CustomerName,
+                    CustomerType = customerProd.CustomerType,
+                     ProductName=customerProd.ProductName,
+                    wholesalePrice=customerProd.wholesalePrice,
+
+
+                };
+                
             }
+         
+            return View(TopCustomerquery);
             
-            else 
-            {
-                var regularCustomerquery = _context.Customer_Products
-                .Join(
-                _context.Customers,
-                customerprod => customerprod.CustomerId,
-                customer => customer.Id
-                , (customerprod, customer) => new
-                {
-                    CustomerId = customer.Id,
-                    CustomerName = customer.Name,
-                    CustomerType = customer.type,
-                    productId = customerprod.ProductId
-
-
-                }
-                    )
-                .Where(customer => customer.CustomerType == "Top")
-                .Join(_context.Products,
-                customerprod => customerprod.productId,
-
-                product => product.Id,
-                (customerprod, product) => new
-                {
-                    name = product.Name,
-
-                    Price = product.price
-                }).ToList();
-                return View(regularCustomerquery);
-
-            }
-            //else { return View(); }
-            /*foreach(var item in query)
-            {
-                Name = item.Customer.Name,
-                type=item.Customer.type,
-                name=item.Product.Name,
-
-            }
-            return RedirectToAction("Index");
-            }
-            //var customer = _context.Customer_Products.FromSqlRaw($"SELECT Customers.name,Customers.type,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type=\"Regular\";").ToList();
-            else if (type == "Regular")
-            {
-                var query = _context.Customer_Products.FromSqlRaw(regular).ToList();
-                return RedirectToAction("Index");
-            }*/
-          //  return View();
-            //}
-            //catch (Exception e)
-            //{
-            //   TempData["error Message"] = e.Message;
-            //  return RedirectToAction("Index");
-            //}
-
-            // }
+          
         }
+        [HttpGet]
+        public IActionResult ShowRegularCustomer()
+        {
+            var Customerquery = _context.Customer_Products
+                            .Join(
+                            _context.Customers,
+                            customerprod => customerprod.CustomerId,
+                            customer => customer.Id
+                            , (customerprod, customer) => new RegularCustomerViewModel
+                            {
+                                CustomerName = customer.Name,
+                                Customertype = customer.type,
+                                ProductId = customerprod.ProductId
+
+
+                            })
+                            .Where(customer => customer.Customertype == "Regular")
+                            .Join(_context.Products,
+                            customerprod => customerprod.ProductId,
+
+                            product => product.Id,
+                            (customerprod, product) => new RegularCustomerViewModel
+                            {
+                                ProductName = product.Name,
+                                price = product.price
+                            }).ToList();
+
+            foreach (var customer in Customerquery)
+            {
+                var model = new RegularCustomerViewModel()//CPViewmodel=CustomerProductViewModel
+                {
+                   
+                    CustomerName = customer.CustomerName,
+                    Customertype = customer.Customertype,
+                    ProductName=customer.ProductName,
+                    price = customer.price
+
+
+                };
+                //return View(Customerquery);
+
+
+            }
+            return View(Customerquery);
+
+        }
+        //[HttpGet]
+        //public IActionResult ShowPriceByCustomerType(string type)
+        //{//SELECT Customers.name,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id;
+
+        //    /*SELECT Customers.name,Customers.type,Products.Name,Products.Price from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type="Regular";
+
+        //     *THIS QUERY FOR REGULAR CUSTOMER*/
+        //    //  try
+        //    //{
+        //    //   return View();
+
+
+
+        //    else 
+        //    {
+        //        var regularCustomerquery = _context.Customer_Products
+        //        .Join(
+        //        _context.Customers,
+        //        customerprod => customerprod.CustomerId,
+        //        customer => customer.Id
+        //        , (customerprod, customer) => new
+        //        {
+        //            CustomerId = customer.Id,
+        //            CustomerName = customer.Name,
+        //            CustomerType = customer.type,
+        //            productId = customerprod.ProductId
+
+
+        //        }
+        //            )
+        //        .Where(customer => customer.CustomerType == "Top")
+        //        .Join(_context.Products,
+        //        customerprod => customerprod.productId,
+
+        //        product => product.Id,
+        //        (customerprod, product) => new
+        //        {
+        //            name = product.Name,
+
+        //            Price = product.price
+        //        }).ToList();
+        //        return View(regularCustomerquery);
+
+        //    }
+        //else { return View(); }
+        /*foreach(var item in query)
+        {
+            Name = item.Customer.Name,
+            type=item.Customer.type,
+            name=item.Product.Name,
+
+        }
+        return RedirectToAction("Index");
+        }
+        //var customer = _context.Customer_Products.FromSqlRaw($"SELECT Customers.name,Customers.type,Products.Name,Products.wholesalePrice from customer_products inner join customers on customer_products.CustomerId=customers.Id inner join products on customer_products.ProductId=products.id where type=\"Regular\";").ToList();
+        else if (type == "Regular")
+        {
+            var query = _context.Customer_Products.FromSqlRaw(regular).ToList();
+            return RedirectToAction("Index");
+        }*/
+        //  return View();
+        //}
+        //catch (Exception e)
+        //{
+        //   TempData["error Message"] = e.Message;
+        //  return RedirectToAction("Index");
+        //}
+
+        // }
+        // }
         [HttpGet]
         public IActionResult Delete(int Id) 
         {

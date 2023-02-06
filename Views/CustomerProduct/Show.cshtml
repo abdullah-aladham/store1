@@ -11,12 +11,9 @@
     <title>Show</title>
 </head>
 <body>
-    <form asp-action="ShowPriceByCustomerType" method="get">
-    <select name="type">
-        <option value="Top">Top</option>
-        <option value="Regular">Regular Customer</option>
-    </select>
-    <button type="submit">Show</button>
+    <form >
+        <button value="Top" class="btn btn-success" asp-controller="CustomerProduct" asp-action="ShowTopCustomer">Top Customers</button>
+        <button value="Regular" class="btn btn-success" asp-controller="CustomerProduct" asp-action="ShowRegularCustomer">Regular Customers</button>
     </form>
 
 

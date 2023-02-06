@@ -1,18 +1,15 @@
-﻿
+﻿@model List<store1.Models.MViews.TopViewModel>
 @{
     Layout = "_Layout";
-    
 }
-
-
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ShowPriceByCustomerType</title>
+    <title>ShowTopCustomer</title>
 </head>
 <body>
-    <h2>Prices by id of customer</h2>
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
@@ -25,16 +22,17 @@
         <tbody>
 
             <tr>
-                if(Model.Customers.Any() && Model.products.Any()){
-                @foreach (var customer in @Model.Customers)
+                if(Model != null && Model.Any() ){
+                @foreach (var customer in Model)
                 {
-                    <td>@customer.Name</td>
-                    <td>@customer.type</td>
+                    <td>@customer.CustomerName</td>
+                    <td>@customer.CustomerType</td>
+                    <td>@customer.ProductName</td>
+                    <td>@customer.wholesalePrice</td>
                 }
                 
-                
                 }
-                
+
             </tr>
 
 
