@@ -164,7 +164,7 @@ namespace store1.Controllers
                 return RedirectToAction("Index");
             }
         }
-        [HttpDelete]
+        [HttpPost]
         public IActionResult DeleteCustomer(CustomerViewModel model)
         {
             try
@@ -180,7 +180,7 @@ namespace store1.Controllers
                 else
                 {
                     TempData["errorMessage"] = $"Customer details not avaliable with the Id:{model.Id}";
-                    return RedirectToAction("index");
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception e)

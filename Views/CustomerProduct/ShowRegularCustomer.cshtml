@@ -23,21 +23,23 @@
         </thead>
         <tbody>
 
-            <tr>
-                if(Model != null && Model.Any() ){
+            
+                @if(Model != null && Model.Any() ){
                     @foreach (var customer in Model)
-                    {
+                {
+                    <tr>
                         <td>@customer.CustomerName</td>
                         <td>@customer.Customertype</td>
                         <td>@customer.ProductName </td>
-                        <td>@customer.product.price</td>
+                        <td>@customer.price</td>
+                    </tr>
                     }
 
                     }
                     
 
 
-            </tr>
+            
 
 
 

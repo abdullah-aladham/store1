@@ -19,13 +19,13 @@
                 <th>Description</th>
                 <th>Wholesale price</th>
                 <th> price</th>
-
+ 
             </tr>
         </thead>
         <tbody>
             @if (Model != null && Model.Any())
             {
-                foreach (var product in Model)
+                @foreach (var product in Model)
                 {
                     <tr>
                         <td>@product.Id</td>

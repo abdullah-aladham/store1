@@ -37,6 +37,11 @@
                         <td>@customerP.ProductId</td>
                         <td>
                             <form>
+                               <div class="btn-group btn-group-sm">
+                                <button asp-action="Details" asp-controller="CustomerProduct" asp-route-id="@customerP.Id" class="btn btn-primary">Details</button>
+
+
+                                </div>
                                 <div class="btn-group btn-group-sm">
                                     <button asp-action="Edit" asp-controller="CustomerProduct" asp-route-id="@customerP.Id" class="btn btn-primary">Edit</button>
 

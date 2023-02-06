@@ -12,7 +12,8 @@
           "Microsoft.EntityFrameworkCore.Relational": "7.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.2",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.3",
-          "MySql.EntityFrameworkCore": "7.0.0"
+          "MySql.EntityFrameworkCore": "7.0.0",
+          "System.Linq": "4.3.0"
         },
         "runtime": {
           "store1.dll": {}

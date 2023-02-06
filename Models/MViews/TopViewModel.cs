@@ -10,7 +10,7 @@ namespace store1.Models.MViews
         productId = */
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
-        public string CustomerType { get; set; } = "Top";
+        public string CustomerType { get; set; }/* = "Top";*/
        
         public virtual Products product { get; set; }
         public int productId { get; set; }

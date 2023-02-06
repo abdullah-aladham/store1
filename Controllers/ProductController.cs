@@ -47,6 +47,8 @@ namespace store1.Controllers
                         Id = ProductData.Id,
                         Name = ProductData.Name,
                         Description = ProductData.Description,
+                        price=ProductData.price,
+                        wholesalePrice= ProductData.wholesalePrice,
                     };
                     _context.Products.Add(product);
                     _context.SaveChanges();
@@ -83,6 +85,7 @@ namespace store1.Controllers
                     {
                         Id = model.Id,
                         Name = model.Name,
+                        Description = model.Description,
                         price = model.price,
                         wholesalePrice= model.wholesalePrice,
                     };
