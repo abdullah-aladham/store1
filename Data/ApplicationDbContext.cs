@@ -18,7 +18,7 @@ namespace store1.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
             // optionBuilder.UseSqlServer("Data Source=DESKTOP-2E84EKK;Initial Catalog =store;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;");
-            optionBuilder.UseMySQL("server=localhost;database=store;uid=root;password=HelloWorld-1516!;");
+            optionBuilder.UseLazyLoadingProxies().UseMySQL("server=localhost;database=store;uid=root;password=HelloWorld-1516!;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
