@@ -1,4 +1,5 @@
-﻿@model List<store1.Models.MViews.CustomerProductViewModel>
+﻿@using store1.Models;
+@model List<store1.Models.MViews.CustomerProductViewModel>
 
 @{
     ViewData["Title"] = "CustomerIndex";
@@ -14,10 +15,11 @@
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
-    <form>
-        <button asp-action="Create" asp-controller="CustomerProduct" class="btn btn-primary">Add Customer</button>
-    </form>
-    <table class="table table-responsive table-hover">
+    
+    <div>
+        <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action("mpcreate")' data-target="#addCustomerPrdouct" class="btn btn-primary">Add Customer</button>
+    </div>
+    <table class="table table-responsive table-hover" id="CustomerProductTable">
         <thead>
             <tr>
                 <th>id</th>
@@ -65,3 +67,22 @@
             }
         </tbody>
     </table>
+    <div id="modalhere"></div>
+    @await Html.PartialAsync("MPcreate",new CustomerProducts())
+   <script>
+       function AddCustomerProduct()
+       {
+           $.ajax({
+               type: "Get",
+                url: "CustomerProduct/mpcreate",
+               success:function(result){
+                    $("#modalhere").html(result);
+                    $("#AddCustomerProduct").modal(show);
+               }
+           });
+       }
+   </script>
+
+
+    
+

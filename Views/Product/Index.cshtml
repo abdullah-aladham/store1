@@ -1,4 +1,5 @@
-﻿@model List<store1.Models.MViews.ProductViewModel>
+﻿@using store1.Models.MViews;
+@model List<store1.Models.MViews.ProductViewModel>
 
 @{
     ViewData["Title"] = "ProductIndex";
@@ -8,9 +9,9 @@
 
     <h1>@ViewData["Title"]</h1>
 
-    <form>
-        <button asp-action="Create" asp-controller="Product" class="btn btn-primary">Add Product</button>
-    </form>
+    <div>
+        <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action("ProductcreateModal")' data-target="#addCustomerPrdouct" class="btn btn-primary">Add Customer</button>
+    </div>
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
@@ -59,3 +60,4 @@
             }
         </tbody>
     </table>
+    @await Html.PartialAsync("ProductcreateModal",new ProductViewModel())

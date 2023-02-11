@@ -69,6 +69,11 @@ namespace store1.Controllers
             }
 
         }
+        public IActionResult ProductcreateModal()
+        {
+            CustomerProductViewModel customerProduct = new CustomerProductViewModel();
+            return PartialView("MPcreate", customerProduct);
+        }
         public IActionResult Create()
         {
             return View();
@@ -136,6 +141,10 @@ namespace store1.Controllers
                 TempData["error Message"] = e.Message;
                 return RedirectToAction("Index");
             }
+        }
+
+        public IActionResult QuickEdit(int Id) {
+            return PartialView();
         }
         public IActionResult Delete(int Id)
         {

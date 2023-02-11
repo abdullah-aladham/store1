@@ -79,6 +79,13 @@ namespace store1.Controllers
             }
 
         }
+        public IActionResult MPcreate()
+        {
+            CustomerProducts customerProduct = new CustomerProducts();
+            return PartialView("MPcreate", customerProduct);
+        }
+
+
         [HttpGet]
         public IActionResult Edit(int Id)
         {
@@ -139,7 +146,15 @@ namespace store1.Controllers
                 return RedirectToAction("Index"); ;
             }
         }
-        [HttpGet]
+        public IActionResult QuickEdit(int Id)
+        {
+            return PartialView();
+        }
+        public IActionResult QuickShow(int Id)
+        {
+            return PartialView();
+        }
+        //[HttpGet]
         //public IActionResult Show()
         //{
         //    return View();

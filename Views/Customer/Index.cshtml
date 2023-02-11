@@ -1,4 +1,6 @@
-﻿@model List<store1.Models.MViews.CustomerViewModel>
+﻿@using store1.Models.MViews;
+
+@model List<store1.Models.MViews.CustomerViewModel>
 
 @{
     ViewData["Title"] = "CustomerIndex";
@@ -14,9 +16,9 @@
         <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
-    <form>
-        <button asp-action="Create" asp-controller="Customer" class="btn btn-primary">Add Customer</button>
-    </form>
+    <div>
+        <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action("CustomercreateModal")' data-target="#addCustomerPrdouct" class="btn btn-primary">Add Customer</button>
+    </div>
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
@@ -60,3 +62,4 @@
             }
         </tbody>
     </table>
+    @await Html.PartialAsync("CustomercreateModal",new CustomerViewModel())

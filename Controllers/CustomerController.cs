@@ -75,6 +75,12 @@ namespace store1.Controllers
         {
             return View();
         }
+        public IActionResult CustomercreateModal()
+        {
+            Customer customer = new Customer();
+            return PartialView("MPcreate", customer);
+        }
+
         [HttpPost]
 
         public IActionResult UpdateCustomer(CustomerViewModel model)
@@ -135,6 +141,10 @@ namespace store1.Controllers
                 TempData["error Message"] = e.Message;
                 return RedirectToAction("Index");
             }
+        }
+        public IActionResult QuickEdit(int Id)
+        {
+            return PartialView();
         }
         public IActionResult Delete(int Id)
         {
