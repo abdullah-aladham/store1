@@ -49,6 +49,11 @@
 
                                 </div>
                                 <div class="btn-group btn-group-sm">
+                                    <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action($"QuickEdit{customerP.Id}")' data-target="#addCustomerPrdouct" class="btn btn-primary">Add Customer</button>
+
+
+                                </div>
+                                <div class="btn-group btn-group-sm">
                                     <button asp-action="Delete" asp-controller="CustomerProduct" asp-route-id="@customerP.Id" class="btn btn-danger">Delete</button>
                                 </div>
                             </form>
@@ -69,6 +74,7 @@
     </table>
     <div id="modalhere"></div>
     @await Html.PartialAsync("MPcreate",new CustomerProducts())
+    @await Html.PartialAsync("QuickEdit",new CustomerProducts())
    <script>
        function AddCustomerProduct()
        {
