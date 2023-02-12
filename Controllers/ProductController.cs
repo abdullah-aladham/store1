@@ -2,6 +2,7 @@
 using store1.Data;
 using store1.Models.MViews;
 using store1.Models;
+using Castle.Core.Resource;
 
 namespace store1.Controllers
 {
@@ -144,7 +145,33 @@ namespace store1.Controllers
         }
 
         public IActionResult QuickEdit(int Id) {
-            return PartialView();
+            try
+            {
+                var query = _context.Products.SingleOrDefault(p => p.Id == Id);
+                if (query != null)
+                {
+                    var productView = new ProductViewModel()
+                    {
+                        Id = query.Id,
+                        Name = query.Name,
+                        price = query.price,
+                        wholesalePrice = query.wholesalePrice,
+
+                    };
+                    return PartialView(productView);
+                }
+                else
+                {
+                    TempData["errorMessage"] = $"Customer details are not avaliable with Id : {Id}";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception e)
+            {
+
+                TempData["errorMessage"] = e.Message;
+            }
+            return RedirectToAction("Index");
         }
         public IActionResult Delete(int Id)
         {

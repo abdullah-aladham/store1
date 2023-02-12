@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Castle.Core.Resource;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
@@ -84,8 +85,13 @@ namespace store1.Controllers
             CustomerProducts customerProduct = new CustomerProducts();
             return PartialView("MPcreate", customerProduct);
         }
-
-
+        //[HttpPost]
+        //public IActionResult QuickCreateCustomerProduct(CustomerProducts customerProduct)
+        //{
+        //    _context.Customer_Products.Add(customerProduct);
+        //    _context.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}    
         [HttpGet]
         public IActionResult Edit(int Id)
         {
@@ -148,7 +154,24 @@ namespace store1.Controllers
         }
         public IActionResult QuickEdit(int Id)
         {
-            return PartialView();
+            var query=_context.Customer_Products.SingleOrDefault(p=>p.Id == Id);
+            if (query != null)
+            {
+                var CustomerprodView = new CustomerProductViewModel()
+                {
+                    Id = query.Id,
+                    CustomerId = query.CustomerId,
+                    ProductId = query.ProductId
+
+                };
+                return PartialView("QuickEdit",CustomerprodView);
+            }
+            else
+            {
+                TempData["errorMessage"] = $"Customer details are not avaliable with Id : {Id}";
+                return RedirectToAction("Index");
+            }
+            //return PartialView();
         }
         public IActionResult QuickShow(int Id)
         {

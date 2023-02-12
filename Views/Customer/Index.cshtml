@@ -37,6 +37,9 @@
                         <td>@customer.Name</td>
                         <td>@customer.type</td>
                         <td>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" id="Add" data-toggle="modal" data-target="#EditCustomer" class="btn btn-primary" data-url='@Url.Action($"QuickEdit/{@customer.Id}")'>Edit Customer</button>
+                            </div>
                             <form>
                                 <div class="btn-group btn-group-sm">
                                     <button asp-action="Update" asp-controller="Customer" asp-route-id="@customer.Id" class="btn btn-primary">Edit</button>
@@ -63,3 +66,4 @@
         </tbody>
     </table>
     @await Html.PartialAsync("CustomercreateModal",new CustomerViewModel())
+    @await Html.PartialAsync("QuickEdit",new CustomerViewModel())

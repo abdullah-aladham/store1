@@ -17,8 +17,8 @@
 
             </div>
             <div class="modal-body">
-                @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
-                <form action="AddCustomer" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form asp-action="AddCustomer" method="post">
                     <div class="mb-3">
                         <label class="form-label">Id</label>
                         <input type="text" class="form-control" asp-for="Id" />
@@ -30,10 +30,13 @@
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">type</label>
-                        <input type="text" class="form-control" asp-for="type" />
-                        <span asp-validation-for="type" class="text-danger"></span>
-                    </div>
+            <            <label class="form-label">Customer Type</label>
+                        <select name="type">
+                            <option value="Top">Top Customer</option>
+                            <option value="Regular">Regular Customer</option>
+            </select>
+
+        </div>
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Add Customer</button>

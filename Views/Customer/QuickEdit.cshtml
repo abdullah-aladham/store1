@@ -1,12 +1,12 @@
-﻿@model store1.Models.MViews.CustomerProductViewModel
-@{
-
-    ViewData["Title"] = "Edit Admin";
-    var errorMessage = TempData["errorMessage"]?.ToString();
-    var successMessage = TempData["successmessage"]?.ToString();
-}
-
-<!DOCTYPE html>
+﻿@model store1.Models.MViews.CustomerViewModel                          
+@{                                                                     
+                                                                       
+    ViewData["Title"] = "Edit Admin";                                  
+    var errorMessage = TempData["errorMessage"]?.ToString();              
+    var successMessage = TempData["successmessage"]?.ToString();          
+}                                                                         
+                                                                          
+<!DOCTYPE html>                                                           
 
 <html>
 <head>
@@ -26,7 +26,7 @@
     </div>
 }
 
-<div class="modal fade" id="addCustomerPrdouct" tabindex="-1" role="dialog">
+<div class="modal fade" id="EditCustomer" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -45,15 +45,17 @@
 
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">CustomerId</label>
-                        <input type="text" class="form-control" asp-for="CustomerId" />
-                        <span asp-validation-for="CustomerId" class="text-danger"></span>
+                        <label class="form-label">Customer Name</label>
+                        <input type="text" class="form-control" asp-for="Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
 
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">ProductId</label>
-                        <input type="text" class="form-control" asp-for="ProductId" />
-                        <span asp-validation-for="ProductId" class="text-danger"></span>
+                        <label class="form-label">Customer Type</label>
+                        <select name="type" asp-for="type">
+                            <option value="Top">Top Customer</option>
+                            <option value="Regular">Regular</option>
+                        </select>
 
                     </div>
 

@@ -144,7 +144,31 @@ namespace store1.Controllers
         }
         public IActionResult QuickEdit(int Id)
         {
-            return PartialView();
+            try
+            {
+                var customer = _context.Customers.SingleOrDefault(x => x.Id == Id);
+                if (customer != null)
+                {
+                    var CustomerView = new CustomerViewModel()
+                    {
+                        Id = customer.Id,
+                        Name = customer.Name,
+                        type = customer.type,
+
+                    };
+                    return PartialView("QuickEdit",CustomerView);
+                }
+                else
+                {
+                    TempData["errorMessage"] = $"Customer details are not avaliable with Id : {Id}";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception e)
+            {
+                TempData["error Message"] = e.Message;
+                return RedirectToAction("Index");
+            }
         }
         public IActionResult Delete(int Id)
         {

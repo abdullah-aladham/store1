@@ -11,6 +11,7 @@
 
     <div>
         <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action("ProductcreateModal")' data-target="#addCustomerPrdouct" class="btn btn-primary">Add Customer</button>
+        @*<button type="button" id="Add" data-toggle="modal" data-url='@Url.Action("QuickEdit")' data-target="#EditPrdouct" class="btn btn-primary">Add Customer</button>*@
     </div>
     <table class="table table-responsive table-hover">
         <thead>
@@ -41,6 +42,12 @@
 
 
                                 </div>
+                                </form>
+                                <div class="btn-group btn-group-sm">
+
+                                <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action($"QuickEdit/{@product.Id}")' data-target="#EditPrdouct" class="btn btn-primary">Quick Edit</button>
+                                </div>
+                                <form>
                                 <div class="btn-group btn-group-sm">
                                     <button asp-action="Delete" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-danger">Delete</button>
                                 </div>
@@ -61,3 +68,4 @@
         </tbody>
     </table>
     @await Html.PartialAsync("ProductcreateModal",new ProductViewModel())
+    @await Html.PartialAsync("QuickEdit",new ProductViewModel())

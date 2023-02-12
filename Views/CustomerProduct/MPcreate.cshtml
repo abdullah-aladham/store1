@@ -1,4 +1,7 @@
 ﻿@model store1.Models.CustomerProducts
+@{
+    Layout = null;
+}
 <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -6,7 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     </head>
-<div class="modal fade" id="addCustomerPrdouct" tabindex="-1" role="dialog">
+<div class="modal fade" id="addCustomerPrdouct" tabindex="-1" role="dialog" aria-labelledby="addCustomerProductLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,8 +20,8 @@
 
             </div>
             <div class="modal-body">
-                @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
-                <form action="CreateCustomerProduct" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form asp-action="CreateCustomerProduct" method="post">
                     <div class="mb-3">
                         <label class="form-label">Id</label>
                         <input type="text" class="form-control" asp-for="Id" />
@@ -30,7 +33,7 @@
                         <span asp-validation-for="CustomerId" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">ProductId</label>
+                        <label class="control-label">ProductId</label>
                         <input type="text" class="form-control" asp-for="ProductId" />
                         <span asp-validation-for="ProductId" class="text-danger"></span>
                     </div>
