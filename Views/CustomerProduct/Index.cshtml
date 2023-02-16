@@ -55,12 +55,12 @@
                                 </div>
                             </form>
                             <div class="btn-group btn-group-sm">
-                                <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action($"QuickEdit")' data-id="@customerP.Id" data-target="#addCustomerPrdouct" class="btn btn-primary">Add Customer</button>
+                                <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action("QuickEdit",@customerP.Id)' data-id="@customerP.Id" data-target="#EditCustomerPrdouct" class="btn btn-primary">Quick edit</button>
 
 
                             </div>
                             <div>
-                            <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action($"QuickShow/{@customerP.Id}")'  data-target="#addCustomerPrdouct" class="btn btn-primary">Add Customer</button>
+                                <button type="button" id="Add" data-toggle="modal" data-url='@Url.Action($"QuickShow",@customerP.Id)' data-id="@customerP.Id" data-target="#ShowDetails" class="btn btn-primary">Quick show</button>
 
 
                             </div>
@@ -82,7 +82,7 @@
     <div id="modalhere"></div>
     @await Html.PartialAsync("MPcreate",new CustomerProducts())
     @await Html.PartialAsync("QuickShow",new CustomerProductViewModel())
-    @*@await Html.PartialAsync("QuickEdit",new CustomerProducts())*@
+    @await Html.PartialAsync("QuickEdit",new CustomerProductViewModel())
   
 
 

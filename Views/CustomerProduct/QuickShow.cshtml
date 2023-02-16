@@ -27,7 +27,7 @@
 
                     </div>
                     <div class="modal-body">
-        @if (Model != null && Model.Customer.type == "Top")
+@*        @if (Model != null && Model.Customer.type == "Top")
         {
             <h3 class="h-25">Customer Name</h3>
             <p class="p-1">@Html.DisplayFor(modelitem=>Model.Customer.Name)</p>
@@ -45,14 +45,14 @@
                     <th>Product Sale price</th>
                 </tr>
                 <tr>
-
-                    <td>@Html.DisplayFor(product=>Model.Product.Name)</td>
+*@
+                 @*   <td>@Html.DisplayFor(product=>Model.Product.Name)</td>
                     <td>@Html.DisplayFor(product=>Model.Product.wholesalePrice)</td>
 
                 </tr>
 
             </table>
-        }
+        }*@
 
         else
         {

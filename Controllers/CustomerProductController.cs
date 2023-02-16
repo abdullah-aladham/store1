@@ -173,10 +173,12 @@ namespace store1.Controllers
             }
             //return PartialView();
         }
-        public IActionResult QuickShow(int Id)
+        /*public IActionResult QuickShow(int Id)
         {
-            return PartialView();
-        }
+            var query = _context.Customer_Products.Include(c => c.Customer).Include(p => p.Product).FirstOrDefault(x => x.Id == Id);
+
+            return PartialView("QuickShow",query);
+        }*/
         //[HttpGet]
         //public IActionResult Show()
         //{
